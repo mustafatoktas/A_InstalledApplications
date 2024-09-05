@@ -58,6 +58,7 @@ Ekran görüntüleri uygulamanın `v1.0.0` sürümünden alınmıştır. Yeni s�
 - `Flow`
 - `Hilt`
 - `Ksp`
+- `Coil`
 - `Lifecycle`
 - `Splash Screen`
 - `Customizable snackbar`
