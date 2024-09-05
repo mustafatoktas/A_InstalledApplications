@@ -4,7 +4,7 @@
   <img src="./Readme Resources/Installed Applications Logo.png" alt="Logo" width="120"/>
 </div>
 
-## **İçindekiler**
+## İçindekiler
 
 - [Uygulama Hakkında](#uygulama-hakkında)
 - [Ekran Görüntüleri](#ekran-görüntüleri)
@@ -30,7 +30,6 @@
   <tr>
     <th style="text-align: left; font-weight: bold;">Kullanılan İzinler</th>
     <td style="text-align: left;">QUERY_ALL_PACKAGES</td>
-    
   </tr>
 </table>
 
@@ -87,7 +86,7 @@ Ekran görüntüleri uygulamanın `v1.0.0` sürümünden alınmıştır. Yeni s�
   uygulamanın en güncel sürümünü indirebilirsiniz.
 
 
-  ![-----------------------------------------------------](./Readme%20Resources/Çizgi.png)
+![-----------------------------------------------------](./Readme%20Resources/Çizgi.png)
 
 <a href="https://github.com/mustafatoktas/W.BE_RepoVisitorCounterAPI" target="_blank"> <img src="https://toktasoft.com/api/github2/repo-visitor-counter.php?repo=jmq3z5yc8bk6vpw&show_repo_name=1&show_date=1&show_brand=0" alt="Repo Visitor Counter"/> </a>
 
