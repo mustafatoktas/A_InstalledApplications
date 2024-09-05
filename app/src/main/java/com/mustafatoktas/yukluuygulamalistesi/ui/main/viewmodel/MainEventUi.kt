@@ -1,4 +1,4 @@
-package com.mustafatoktas.yukluuygulamalistesi.presentation.main.viewmodel
+package com.mustafatoktas.yukluuygulamalistesi.ui.main.viewmodel
 
 
 sealed class MainEventUi {

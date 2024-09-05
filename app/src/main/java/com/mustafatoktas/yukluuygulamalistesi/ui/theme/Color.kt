@@ -1,4 +1,4 @@
-package com.mustafatoktas.yukluuygulamalistesi.ui
+package com.mustafatoktas.yukluuygulamalistesi.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

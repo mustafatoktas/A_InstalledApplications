@@ -1,4 +1,4 @@
-package com.mustafatoktas.yukluuygulamalistesi.presentation.main.components
+package com.mustafatoktas.yukluuygulamalistesi.ui.main.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,8 +15,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.mustafatoktas.yukluuygulamalistesi.domain.model.Uygulama
-import com.mustafatoktas.yukluuygulamalistesi.presentation.main.viewmodel.MainEvent
-import com.mustafatoktas.yukluuygulamalistesi.presentation.main.viewmodel.MainViewModel
+import com.mustafatoktas.yukluuygulamalistesi.ui.main.viewmodel.MainEvent
+import com.mustafatoktas.yukluuygulamalistesi.ui.main.viewmodel.MainViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)

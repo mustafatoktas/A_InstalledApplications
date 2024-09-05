@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Installed Applications</string>
+    <string name="root_tespit_edildi">Root Detected</string>
+    <string name="emulator_icerigi">This app is designed to run on real devices. Emulator usage has been detected. Please run the app on a real device and try again.</string>
+    <string name="root_icerigi">To maintain your security and application integrity, this app does not work on devices with root access. Please unroot your device and try again.</string>
+    <string name="cihaz_bir_emulator_uzerinde_calisiyor">Running on an Emulator</string>
+    <string name="uygulamayi_kapat">Close the application</string>
 </resources>

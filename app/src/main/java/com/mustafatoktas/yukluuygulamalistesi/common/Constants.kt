@@ -6,3 +6,9 @@ object Constants {
     const val evet = "Yes"
     const val hayir = "No"
 }
+
+enum class CihazDurumu {
+    Rootlu,
+    Emulator,
+    Normal,
+}

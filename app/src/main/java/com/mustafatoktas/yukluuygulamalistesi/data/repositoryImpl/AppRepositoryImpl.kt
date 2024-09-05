@@ -8,8 +8,10 @@ import android.provider.Settings
 import com.mustafatoktas.yukluuygulamalistesi.common.Resource
 import com.mustafatoktas.yukluuygulamalistesi.domain.model.Uygulama
 import com.mustafatoktas.yukluuygulamalistesi.domain.repository.AppRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import java.util.Date
 import javax.inject.Inject
 
@@ -17,7 +19,6 @@ import javax.inject.Inject
 class AppRepositoryImpl @Inject constructor(
     private val context: Context,
 ) : AppRepository {
-
 
     override suspend fun getUygulamaListesi(): Flow<Resource<List<Uygulama>>> {
         return flow {
@@ -36,13 +37,12 @@ class AppRepositoryImpl @Inject constructor(
                     )
                 }.sortedBy { it.uygulumaAdi.lowercase() }
                 emit(Resource.Success(apps))
-
             } catch (e: Exception) {
                 emit(Resource.Error(e.message ?: "Bir hata oluştu"))
             } finally {
                 emit(Resource.Loading(false))
             }
-        }
+        }.flowOn(Dispatchers.Default) // Flow'un çalışacağı dispatcher
     }
 
     override suspend fun ayarlardaAc(packageName: String) {

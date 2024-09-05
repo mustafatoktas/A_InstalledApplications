@@ -1,4 +1,4 @@
-package com.mustafatoktas.yukluuygulamalistesi.presentation.main
+package com.mustafatoktas.yukluuygulamalistesi.ui.main.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,7 +12,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -20,24 +19,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.dokar.sonner.Toaster
 import com.dokar.sonner.rememberToasterState
-import com.mustafatoktas.yukluuygulamalistesi.presentation.main.components.MainToolbar
-import com.mustafatoktas.yukluuygulamalistesi.presentation.main.components.UygulamaBilgisiSection
-import com.mustafatoktas.yukluuygulamalistesi.presentation.main.components.UygulamalariAra
-import com.mustafatoktas.yukluuygulamalistesi.presentation.main.viewmodel.MainEvent
-import com.mustafatoktas.yukluuygulamalistesi.presentation.main.viewmodel.MainEventUi
-import com.mustafatoktas.yukluuygulamalistesi.presentation.main.viewmodel.MainViewModel
+import com.mustafatoktas.yukluuygulamalistesi.ui.main.viewmodel.MainEvent
+import com.mustafatoktas.yukluuygulamalistesi.ui.main.viewmodel.MainEventUi
+import com.mustafatoktas.yukluuygulamalistesi.ui.main.viewmodel.MainState
+import com.mustafatoktas.yukluuygulamalistesi.ui.main.viewmodel.MainViewModel
 import kotlinx.coroutines.flow.collectLatest
 
-
 @Composable
-fun MainScreen(
-    modifier: Modifier = Modifier,
-    viewModel: MainViewModel = hiltViewModel()
+fun MainContent(
+    viewModel: MainViewModel,
+    state: MainState,
 ) {
-    val state by viewModel.state.collectAsState()
     val toaster = rememberToasterState()
     var aramaAktifMi by remember { mutableStateOf(false) }
 
@@ -56,17 +50,17 @@ fun MainScreen(
     Scaffold(
         topBar = {
             if (!aramaAktifMi)
-            MainToolbar(
-                oncFilterClick = {
-                    viewModel.handleEvent(MainEvent.OnFilterClick)
-                },
-                onRefreshClick = {
-                    viewModel.handleEvent(MainEvent.OnRefreshClick)
-                },
-                onSearchClick = {
-                    aramaAktifMi = true
-                }
-            )
+                MainToolbar(
+                    oncFilterClick = {
+                        viewModel.handleEvent(MainEvent.OnFilterClick)
+                    },
+                    onRefreshClick = {
+                        viewModel.handleEvent(MainEvent.OnRefreshClick(false))
+                    },
+                    onSearchClick = {
+                        aramaAktifMi = true
+                    }
+                )
 
             else UygulamalariAra(
                 list = state.uygulamaListesi,
@@ -77,7 +71,7 @@ fun MainScreen(
         },
     ) { padding ->
 
-        if (state.isLoading) {
+        if (state.isLoading)
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -86,7 +80,7 @@ fun MainScreen(
             ) {
                 CircularProgressIndicator()
             }
-        } else {
+        else
             Column (
                 modifier = Modifier
                     .fillMaxSize()
@@ -100,20 +94,19 @@ fun MainScreen(
                 )
 
                 LazyColumn(
-                    modifier = modifier
+                    modifier = Modifier
                         .fillMaxSize(),
                 ) {
                     items(state.uygulamaListesi) { uygulama ->
                         UygulamaBilgisiSection(
                             uygulama = uygulama,
                             onItemClick = {
-                               viewModel.handleEvent(MainEvent.onUygulamaClick(uygulama.paketAdi))
+                                viewModel.handleEvent(MainEvent.onUygulamaClick(uygulama.paketAdi))
                             }
                         )
                     }
                 }
             }
 
-        }
     }
 }

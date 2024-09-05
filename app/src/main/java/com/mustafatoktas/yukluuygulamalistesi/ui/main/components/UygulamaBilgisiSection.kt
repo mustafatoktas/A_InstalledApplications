@@ -1,4 +1,4 @@
-package com.mustafatoktas.yukluuygulamalistesi.presentation.main.components
+package com.mustafatoktas.yukluuygulamalistesi.ui.main.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,12 +37,12 @@ import com.mustafatoktas.yukluuygulamalistesi.domain.model.Uygulama
 fun UygulamaBilgisiSection(
     modifier: Modifier = Modifier,
     uygulama: Uygulama,
-    onItemClick: () -> Unit = {}
+    onItemClick: () -> Unit = {},
 ) {
 
     Column(
         modifier = modifier
-            .padding(horizontal = 16.dp, vertical = 12.dp)
+            .padding(horizontal = 12.dp, vertical = 6.dp)
             .shadow(3.dp, shape = RoundedCornerShape(12.dp))
             .background(
                 color = MaterialTheme.colorScheme.surfaceVariant,
@@ -79,22 +80,25 @@ fun UygulamaBilgisiSection(
         Spacer(modifier = Modifier.height(8.dp))
 
         InfoRow(
-            label = "Package Name:",
-            value = uygulama.paketAdi,
+            title = "Package Name:",
+            text = uygulama.paketAdi,
+            sistemUygulamasiMi = null,
         )
 
         InfoRow(
-            label = "Version:",
-            value = uygulama.versiyon,
+            title = "Version:",
+            text = uygulama.versiyon,
+            sistemUygulamasiMi = null,
         )
 
         InfoRow(
-            label = "Installed On:",
-            value = uygulama.installedOn,
+            title = "Installed On:",
+            text = uygulama.installedOn,
+            sistemUygulamasiMi = null,
         )
 
-        RenkliInfoRow(
-            label = "Is system app?",
+        InfoRow(
+            title = "Is system app:",
             sistemUygulamasiMi = uygulama.sistemUygulamasiMi,
         )
     }
@@ -102,8 +106,9 @@ fun UygulamaBilgisiSection(
 
 @Composable
 fun InfoRow(
-    label: String,
-    value: String,
+    title: String,
+    text: String? = null,
+    sistemUygulamasiMi: Boolean?,
 ) {
     Row(
         modifier = Modifier
@@ -112,7 +117,7 @@ fun InfoRow(
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
-            text = label,
+            text = title,
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.weight(1f)
         )
@@ -123,7 +128,16 @@ fun InfoRow(
                 .horizontalScroll(rememberScrollState()) // Yatay kaydırma
         ) {
             Text(
-                text = value,
+                text = text ?: when (sistemUygulamasiMi) {
+                    true -> Constants.evet
+                    false -> Constants.hayir
+                    null -> ""
+                },
+                color = when (sistemUygulamasiMi) {
+                    true -> MaterialTheme.colorScheme.error
+                    false -> MaterialTheme.colorScheme.primary
+                    null -> Color.Unspecified
+                },
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis // Taşan metinler 3 nokta ile gösterilir
@@ -132,37 +146,6 @@ fun InfoRow(
     }
 }
 
-@Composable
-fun RenkliInfoRow(
-    label: String,
-    sistemUygulamasiMi: Boolean,
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 4.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Text(
-            text = label,
-            style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.weight(1f)
-        )
-        Box(
-            modifier = Modifier
-                .weight(2f)
-                .horizontalScroll(rememberScrollState())
-        ) {
-            Text(
-                text = if (sistemUygulamasiMi) Constants.evet else Constants.hayir,
-                color = if (sistemUygulamasiMi) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.bodyMedium,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-        }
-    }
-}
 
 @Preview (showBackground = true)
 @Composable

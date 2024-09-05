@@ -27,6 +27,11 @@
     <th style="text-align: left; font-weight: bold;">Uygulama Türü</th>
     <td style="text-align: left;">Mobil</td>
   </tr>
+  <tr>
+    <th style="text-align: left; font-weight: bold;">Kullanılan İzinler</th>
+    <td style="text-align: left;">QUERY_ALL_PACKAGES</td>
+    
+  </tr>
 </table>
 
 Bu uygulama telefonda yüklü olarak bulunan tüm uygulamaları listeler.

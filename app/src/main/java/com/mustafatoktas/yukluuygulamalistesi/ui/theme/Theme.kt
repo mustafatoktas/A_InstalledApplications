@@ -1,4 +1,4 @@
-package com.mustafatoktas.yukluuygulamalistesi.ui
+package com.mustafatoktas.yukluuygulamalistesi.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

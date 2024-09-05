@@ -1,4 +1,4 @@
-package com.mustafatoktas.yukluuygulamalistesi.presentation.main.components
+package com.mustafatoktas.yukluuygulamalistesi.ui.main.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
@@ -18,7 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
-import com.mustafatoktas.yukluuygulamalistesi.ui.YukluUygulamaListesiTheme
+import com.mustafatoktas.yukluuygulamalistesi.ui.theme.YukluUygulamaListesiTheme
 
 
 @OptIn(ExperimentalMaterial3Api::class)
